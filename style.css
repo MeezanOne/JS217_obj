@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    font-family: "Poppins", serif;
+}
+*::-webkit-scrollbar{
+    display: none;
+}
+.container{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    background-color: #101010;
+    padding: 25px 20px;
+    color: white;
+}
+.movie_form{
+    width: 95%;
+    min-height: 250px;
+    border-radius: 20px;
+    background-color: #181818;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 25px;
+    gap: 25px;
+}
+.head{
+    font-size: clamp(18px, 4vw, 40px);
+    text-align: center;
+}
+.movie_form form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+}
+.movie_form form .inputs_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.input_box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+.input_box label{
+    font-size: 12px;
+}
+.input_box input{
+    height: 40px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: none; outline: none;
+    background-color: #2a2a2a;
+    color: white;
+    font-size: 14px;
+}
+.movie_form form button{
+    height: 35px;
+    width: 100%;
+    margin-top: 7px;
+    border-radius: 8px;
+    border: none; outline: none;
+    font-size: 15px; font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background-color: #fff9;
+}

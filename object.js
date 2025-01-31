@@ -19,43 +19,60 @@
 const addBtn = document.getElementById('add-btn');
 let movies = []
 
-const renderMovie = (key, value)=>{
+const renderMovie = (filterContent) => {
     const movieSection = document.querySelector('.movie_section');
-    const movieScroller = document.querySelector('.movie_scroller')
-    // movieSection.innerHTML = '';
-    if(movies.length === 0) {
+    const movieScroller = document.querySelector('.movie_scroller');
+
+    if (movies.length === 0) {
         movieSection.classList.remove('visible');
-        return
-    } else{
+        return; 
+    } else {
         movieSection.classList.add('visible');
     }
+
     movieScroller.innerHTML = '';
-    
-    movies.forEach((movie) => {
+
+    const filteredMovies = !filterContent 
+        ? movies 
+        : movies.filter(movie => 
+            movie.info.title.toLowerCase().includes(filterContent.toLowerCase()) // Case-insensitive filter
+        );
+
+    filteredMovies.forEach((movie) => {
         const movieEl = document.createElement('div');
         const movieHeader = document.querySelector('.movie_header');
-        const movieItem = document.createElement('div')
-        movieItem.className = 'movieItems'
+        const movieItem = document.createElement('div');
+        movieItem.className = 'movieItems';
         movieEl.className = 'moviee';
 
         const movieTitle = document.createElement('div');
-        const movieKey = document.createElement('div');
-        const movieValue = document.createElement('div');
+        const movieKeyValue = document.createElement('div');
 
-        movieItem.textContent = `${movies.length}`
+        movieItem.textContent = `${movies.length}`;
+        let text = ``;
+        for (const key in movie.info) {
+            if (key !== 'title') {
+                text = `${key}: ${movie.info[key]}`;
+            }
+        }
+
         movieTitle.textContent = movie.info.title;
-        movieKey.textContent = key;
-        movieValue.textContent = movie.info[key];
+        movieKeyValue.textContent = text;
 
-        movieHeader.append(movieItem)
-
+        movieHeader.append(movieItem);
         movieEl.append(movieTitle);
-        movieEl.append(movieKey);
-        movieEl.append(movieValue);
+        movieEl.append(movieKeyValue);
 
         movieScroller.append(movieEl);
     });
-}
+};
+
+const searchField = document.getElementById("filter_search");
+
+searchField.addEventListener("input", (event) => {
+    renderMovie(event.target.value);
+});
+
 
 const submitHandler = (event) => {
     event.preventDefault(); 
@@ -79,11 +96,10 @@ const submitHandler = (event) => {
         id: Math.floor(100000 + Math.random() * 900000)
     }
 
-    // console.log(newMovie)
     movies.push(newMovie)
     console.log(movies)
-    renderMovie(key,value);
-    // ✅ Clear input fields properly
+    renderMovie();
+     
     titleInp.value = '';
     keyInp.value = '';
     valueInp.value = '';
